@@ -1,4 +1,9 @@
 module Main where
 
+import DayOne
+
 main :: IO ()
-main = putStrLn "Hello, Haskell!"
+main = do
+  dayOneInput <- readFile "app/input/DayOne.txt"
+  print $ calculateSumOfAllCalibrationValues dayOneInput
+  print $ calculateSumOfAllCalibrationValues' dayOneInput
