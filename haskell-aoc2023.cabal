@@ -1,0 +1,36 @@
+cabal-version:      3.0
+name:               haskell-aoc2023
+version:            0.1.0.0
+
+license:            BSD-3-Clause
+license-file:       LICENSE
+author:             Hydrostatik
+maintainer:         40757442+Hydrostatik@users.noreply.github.com
+category:           Education
+extra-source-files: CHANGELOG.md
+
+library aoc2023
+    exposed-modules:
+        DayOne
+    build-depends:
+        base ^>=4.17.2.0
+    hs-source-dirs: lib
+    default-language: Haskell2010
+
+executable haskell-aoc2023
+    main-is:          Main.hs
+    build-depends:    
+        base ^>=4.17.2.0,
+        aoc2023
+    hs-source-dirs:   app
+    default-language: Haskell2010
+
+test-suite haskell-aoc2023-test
+    default-language: Haskell2010
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Main.hs
+    build-depends:
+        base ^>=4.17.2.0,
+        hspec,
+        aoc2023
