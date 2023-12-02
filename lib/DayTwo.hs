@@ -17,7 +17,7 @@ import Data.List
   contained only 12 red cubes, 13 green cubes and 14 blue cubes. What is the sum of the IDs of the games?
 -}
 sumOfValidGameIDs :: String -> Int
-sumOfValidGameIDs x = foldr (\x acc -> gameID x + acc) 0 $ filter (all turnMeetsPartOneCriteria . turns) $ map readGame $ lines x
+sumOfValidGameIDs x = foldr (\x acc -> gameID x + acc) 0 . filter (all turnMeetsPartOneCriteria . turns) . map readGame $ lines x
 
 {-
   Part Two:
