@@ -23,36 +23,32 @@ sumOfValidGameIDs x = foldr (\x acc -> gameID x + acc) 0 . filter (all turnMeets
   Part Two:
 
   In each game what is the fewest number of cubes of each color?
-  Find the product of the least amount of cubes required to play the game
+  Find the sum of the product of the least amount of cubes required to play each game
 -}
 productOfMinimumCubesRequired :: String -> Int
-productOfMinimumCubesRequired x = sum $ map ((\x -> maximum (map redCubes x) * maximum (map greenCubes x) * maximum (map blueCubes x)) . turns . readGame) (lines x)
+productOfMinimumCubesRequired x = sum $ map ((\x -> maximum (map fst x) * maximum (map snd x) * maximum (map thd x)) . turns . readGame) $ lines x
+  where
+    fst (x, _, _) = x
+    snd (_, x, _) = x
+    thd (_, _, x) = x
 
 data Game = Game
   { gameID :: Int,
-    turns :: [Turn]
+    turns :: [(Int, Int, Int)]
   }
   deriving (Show)
 
-data Turn = Turn
-  { redCubes :: Int,
-    greenCubes :: Int,
-    blueCubes :: Int
-  }
-  deriving (Show)
-
-turnMeetsPartOneCriteria :: Turn -> Bool
-turnMeetsPartOneCriteria x = redCubes x <= 12 && greenCubes x <= 13 && blueCubes x <= 14
+turnMeetsPartOneCriteria :: (Int, Int, Int) -> Bool
+turnMeetsPartOneCriteria (redCubes, greenCubes, blueCubes) = redCubes <= 12 && greenCubes <= 13 && blueCubes <= 14
 
 readGame :: String -> Game
-readGame x = Game {gameID = _gameID x, turns = _turns x}
+readGame x = Game _gameID _turns
   where
-    _gameID :: String -> Int
-    _gameID x = read . last . words . head $ splitOn ':' x
-    _turns x = map readTurn . splitOn ';' . last $ splitOn ':' x
+    _gameID = read . last . words . head $ splitOn ':' x
+    _turns = map readTurn . splitOn ';' . last $ splitOn ':' x
 
-readTurn :: String -> Turn
-readTurn input = (\(x, y, z) -> Turn {redCubes = x, greenCubes = y, blueCubes = z}) $ foldr ((\(x, y, z) (x1, y1, z1) -> (x + x1, y + y1, z + z1)) . matchColors) (0, 0, 0) (splitOn ',' input)
+readTurn :: String -> (Int, Int, Int)
+readTurn input = foldr ((\(x, y, z) (x1, y1, z1) -> (x + x1, y + y1, z + z1)) . matchColors) (0, 0, 0) (splitOn ',' input)
   where
     matchColors x
       | "red" `isSuffixOf` x = (extractNumber x, 0, 0)
