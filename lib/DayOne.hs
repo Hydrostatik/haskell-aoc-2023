@@ -2,8 +2,6 @@ module DayOne where
 
 import Data.Char
 import Data.List
-import Data.Maybe
-import Text.Read
 
 {-
   Part One:
