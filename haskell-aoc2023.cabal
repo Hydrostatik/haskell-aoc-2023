@@ -13,7 +13,8 @@ library aoc2023
     exposed-modules:
         DayOne,
         DayTwo,
-        DayThree
+        DayThree,
+        DayFour
     build-depends:
         base ^>=4.17.2.0,
         split ^>=0.2.4,

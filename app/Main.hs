@@ -1,5 +1,6 @@
 module Main where
 
+import DayFour (totalNumberOfScratchCards, totalWorthOfScratchCards)
 import DayOne
 import DayThree
 import DayTwo
@@ -15,3 +16,6 @@ main = do
   dayThreeInput <- readFile "app/input/DayThree.txt"
   print $ findSumOfAllPartNumbers dayThreeInput
   print $ sumOfAllGearRatios dayThreeInput
+  dayFourInput <- readFile "app/Input/DayFour.txt"
+  print $ totalWorthOfScratchCards dayFourInput
+  print $ totalNumberOfScratchCards dayFourInput
