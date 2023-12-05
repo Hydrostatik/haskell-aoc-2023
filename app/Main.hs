@@ -1,5 +1,6 @@
 module Main where
 
+import DayFive (lowestLocationNumber, lowestLocationNumber')
 import DayFour (totalNumberOfScratchCards, totalWorthOfScratchCards)
 import DayOne
 import DayThree
@@ -19,3 +20,6 @@ main = do
   dayFourInput <- readFile "app/Input/DayFour.txt"
   print $ totalWorthOfScratchCards dayFourInput
   print $ totalNumberOfScratchCards dayFourInput
+  dayFiveInput <- readFile "app/Input/DayFive.txt"
+  print $ lowestLocationNumber dayFiveInput
+  print $ lowestLocationNumber' dayFiveInput
