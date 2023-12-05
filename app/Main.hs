@@ -1,10 +1,22 @@
 module Main where
 
+import Control.Exception
 import DayFive (lowestLocationNumber, lowestLocationNumber')
 import DayFour (totalNumberOfScratchCards, totalWorthOfScratchCards)
 import DayOne
 import DayThree
 import DayTwo
+import System.CPUTime
+import Text.Printf
+
+time :: IO ()
+time = do
+  start <- getCPUTime
+  dayFiveInput <- readFile "app/Input/DayFive.txt"
+  print $ lowestLocationNumber' dayFiveInput
+  end <- getCPUTime
+  let diff = fromIntegral (end - start) / (10 ^ 12)
+  printf "Computation time: %0.9f sec\n" (diff :: Double)
 
 main :: IO ()
 main = do
