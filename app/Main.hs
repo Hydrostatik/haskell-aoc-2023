@@ -4,6 +4,7 @@ import Control.Exception
 import DayFive (lowestLocationNumber, lowestLocationNumber')
 import DayFour (totalNumberOfScratchCards, totalWorthOfScratchCards)
 import DayOne
+import DaySix (productOfAllWaysToWin, waysToWinBigRace)
 import DayThree
 import DayTwo
 import System.CPUTime
@@ -35,3 +36,6 @@ main = do
   dayFiveInput <- readFile "app/Input/DayFive.txt"
   print $ lowestLocationNumber dayFiveInput
   print $ lowestLocationNumber' dayFiveInput
+  daySixInput <- readFile "app/input/DaySix.txt"
+  print $ productOfAllWaysToWin daySixInput
+  print $ waysToWinBigRace daySixInput

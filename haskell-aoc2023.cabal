@@ -15,7 +15,8 @@ library aoc2023
         DayTwo,
         DayThree,
         DayFour,
-        DayFive
+        DayFive,
+        DaySix
     build-depends:
         base ^>=4.17.2.0,
         split ^>=0.2.4,
@@ -30,6 +31,7 @@ executable haskell-aoc2023
         aoc2023
     ghc-options: 
         -O3
+        -fforce-recomp
         -threaded
         -rtsopts
         "-with-rtsopts=-N4 -s"
