@@ -3,6 +3,7 @@ module Main where
 import DayFive (lowestLocationNumber, lowestLocationNumber')
 import DayFour (totalNumberOfScratchCards, totalWorthOfScratchCards)
 import DayOne
+import DaySeven (totalWinnings, totalWinnings')
 import DaySix (productOfAllWaysToWin, waysToWinBigRace)
 import DayThree
 import DayTwo
@@ -40,3 +41,8 @@ main = hspec $ do
       productOfAllWaysToWin "Time:      7  15   30\nDistance:  9  40  200" `shouldBe` 288
     it "Get the possible ways to win for the big race" $ do
       waysToWinBigRace "Time:      7  15   30\nDistance:  9  40  200" `shouldBe` 71503
+  describe "Day Seven" $ do
+    it "Gets the total winnings" $ do
+      totalWinnings "32T3K 765\nT55J5 684\nKK677 28\nKTJJT 220\nQQQJA 483" `shouldBe` 6440
+    it "Gets the total winnings with Jokers" $ do
+      totalWinnings' "32T3K 765\nT55J5 684\nKK677 28\nKTJJT 220\nQQQJA 483" `shouldBe` 5905

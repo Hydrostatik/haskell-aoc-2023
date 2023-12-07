@@ -16,7 +16,8 @@ library aoc2023
         DayThree,
         DayFour,
         DayFive,
-        DaySix
+        DaySix,
+        DaySeven
     build-depends:
         base ^>=4.17.2.0,
         split ^>=0.2.4,

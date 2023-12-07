@@ -1,10 +1,11 @@
 module Main where
 
 import Control.Exception
-import DayFive (lowestLocationNumber, lowestLocationNumber')
-import DayFour (totalNumberOfScratchCards, totalWorthOfScratchCards)
+import DayFive
+import DayFour
 import DayOne
-import DaySix (productOfAllWaysToWin, waysToWinBigRace)
+import DaySeven
+import DaySix
 import DayThree
 import DayTwo
 import System.CPUTime
@@ -39,3 +40,6 @@ main = do
   daySixInput <- readFile "app/input/DaySix.txt"
   print $ productOfAllWaysToWin daySixInput
   print $ waysToWinBigRace daySixInput
+  daySevenInput <- readFile "app/input/DaySeven.txt"
+  print $ totalWinnings daySevenInput
+  print $ totalWinnings' daySevenInput
