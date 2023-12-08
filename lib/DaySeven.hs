@@ -40,7 +40,7 @@ import Data.Ord
   What are the toal winnings?
 -}
 totalWinnings :: String -> Int
-totalWinnings xs = sum . zipWith (\x y -> x * snd y) [1 ..] $ sortBy (\x y -> compare (fst x) (fst y)) . map ((\x -> (parseHand parseCard $ head x, read $ last x :: Int)) . words) $ lines xs
+totalWinnings xs = sum . zipWith (\x y -> x * snd y) [1 ..] $ sortBy (comparing fst) . map ((\x -> (parseHand parseCard $ head x, read $ last x :: Int)) . words) $ lines xs
 
 data Card
   = Joker
