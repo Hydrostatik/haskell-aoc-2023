@@ -1,5 +1,6 @@
 module Main where
 
+import DayEight
 import DayFive (lowestLocationNumber, lowestLocationNumber')
 import DayFour (totalNumberOfScratchCards, totalWorthOfScratchCards)
 import DayOne
@@ -46,3 +47,10 @@ main = hspec $ do
       totalWinnings "32T3K 765\nT55J5 684\nKK677 28\nKTJJT 220\nQQQJA 483" `shouldBe` 6440
     it "Gets the total winnings with Jokers" $ do
       totalWinnings' "32T3K 765\nT55J5 684\nKK677 28\nKTJJT 220\nQQQJA 483" `shouldBe` 5905
+  describe "Day Eight" $ do
+    it "Gets the total steps to reach destination usecase 1" $ do
+      stepsUntilDestinationReached "LLR\n\nAAA = (BBB, BBB)\nBBB = (AAA, ZZZ)\nZZZ = (ZZZ, ZZZ)" `shouldBe` 6
+    it "Gets the total steps to reach destination usecase 2" $ do
+      stepsUntilDestinationReached "RL\n\nAAA = (BBB, CCC)\nBBB = (DDD, EEE)\nCCC = (ZZZ, GGG)\nDDD = (DDD, DDD)\nEEE = (EEE, EEE)\nGGG = (GGG, GGG)\nZZZ = (ZZZ, ZZZ)" `shouldBe` 2
+    it "Gets the total steps to reach all destinations" $ do
+      stepsUntilAllDestinationsReached "LR\n\n11A = (11B, XXX)\n11B = (XXX, 11Z)\n11Z = (11B, XXX)\n22A = (22B, XXX)\n22B = (22C, 22C)\n22C = (22Z, 22Z)\n22Z = (22B, 22B)\nXXX = (XXX, XXX)" `shouldBe` 6

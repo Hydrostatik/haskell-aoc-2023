@@ -1,6 +1,7 @@
 module Main where
 
 import Control.Exception
+import DayEight (stepsUntilAllDestinationsReached, stepsUntilDestinationReached)
 import DayFive
 import DayFour
 import DayOne
@@ -43,3 +44,6 @@ main = do
   daySevenInput <- readFile "app/input/DaySeven.txt"
   print $ totalWinnings daySevenInput
   print $ totalWinnings' daySevenInput
+  dayEightInput <- readFile "app/input/DayEight.txt"
+  print $ stepsUntilDestinationReached dayEightInput
+  print $ stepsUntilAllDestinationsReached dayEightInput
