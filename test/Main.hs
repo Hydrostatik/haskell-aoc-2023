@@ -3,6 +3,7 @@ module Main where
 import DayEight
 import DayFive (lowestLocationNumber, lowestLocationNumber')
 import DayFour (totalNumberOfScratchCards, totalWorthOfScratchCards)
+import DayNine (predictExtrapolatedValues, predictExtrapolatedValues')
 import DayOne
 import DaySeven (totalWinnings, totalWinnings')
 import DaySix (productOfAllWaysToWin, waysToWinBigRace)
@@ -54,3 +55,8 @@ main = hspec $ do
       stepsUntilDestinationReached "RL\n\nAAA = (BBB, CCC)\nBBB = (DDD, EEE)\nCCC = (ZZZ, GGG)\nDDD = (DDD, DDD)\nEEE = (EEE, EEE)\nGGG = (GGG, GGG)\nZZZ = (ZZZ, ZZZ)" `shouldBe` 2
     it "Gets the total steps to reach all destinations" $ do
       stepsUntilAllDestinationsReached "LR\n\n11A = (11B, XXX)\n11B = (XXX, 11Z)\n11Z = (11B, XXX)\n22A = (22B, XXX)\n22B = (22C, 22C)\n22C = (22Z, 22Z)\n22Z = (22B, 22B)\nXXX = (XXX, XXX)" `shouldBe` 6
+  describe "Day Nine" $ do
+    it "Gets the sum of the future prediction of sequences" $ do
+      predictExtrapolatedValues "0 3 6 9 12 15\n1 3 6 10 15 21\n10 13 16 21 30 45" `shouldBe` 114
+    it "Gets the sum of the past prediction of sequences" $ do
+      predictExtrapolatedValues' "0 3 6 9 12 15\n1 3 6 10 15 21\n10 13 16 21 30 45" `shouldBe` 2

@@ -4,6 +4,7 @@ import Control.Exception
 import DayEight (stepsUntilAllDestinationsReached, stepsUntilDestinationReached)
 import DayFive
 import DayFour
+import DayNine (predictExtrapolatedValues, predictExtrapolatedValues')
 import DayOne
 import DaySeven
 import DaySix
@@ -47,3 +48,6 @@ main = do
   dayEightInput <- readFile "app/input/DayEight.txt"
   print $ stepsUntilDestinationReached dayEightInput
   print $ stepsUntilAllDestinationsReached dayEightInput
+  dayNineInput <- readFile "app/input/DayNine.txt"
+  print $ predictExtrapolatedValues dayNineInput
+  print $ predictExtrapolatedValues' dayNineInput
