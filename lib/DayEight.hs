@@ -14,13 +14,7 @@ import qualified Data.Map as M
   Repeat the instructions until you reach ZZZ
 -}
 stepsUntilDestinationReached :: String -> Int
-stepsUntilDestinationReached xs = length . takeWhile (/= "ZZZ") $ scanl (getNextNode (M.fromList networkMap)) "AAA" (mconcat $ repeat instructions)
-  where
-    instructions = head $ lines xs
-    networkMap = map ((\x -> (head x, (x !! 1, last x))) . wordsBy (`elem` "=,") . filter (`notElem` " ()")) $ drop 2 $ lines xs
-
-getNextNode :: M.Map String (String, String) -> String -> Char -> String
-getNextNode nMap currentNode instruction = maybe "" (\(x, y) -> if instruction == 'L' then x else y) (M.lookup currentNode nMap)
+stepsUntilDestinationReached xs = length . takeWhile (/= "ZZZ") $ scanl (getNextNode (M.fromList $ getNetworkMap xs)) "AAA" (cycle $ getInstructions xs)
 
 {-
   Part Two:
@@ -29,8 +23,16 @@ getNextNode nMap currentNode instruction = maybe "" (\(x, y) -> if instruction =
   Your ending nodes are all nodes that end with Z
 -}
 stepsUntilAllDestinationsReached :: String -> Int
-stepsUntilAllDestinationsReached xs = foldr1 lcm $ map (\x -> (length . takeWhile (not . isSuffixOf "Z")) $ scanl (getNextNode (M.fromList networkMap)) x (mconcat $ repeat instructions)) allStartingNodes
-  where
-    instructions = head $ lines xs
-    networkMap = map ((\x -> (head x, (x !! 1, last x))) . wordsBy (`elem` "=,") . filter (`notElem` " ()")) $ drop 2 $ lines xs
-    allStartingNodes = filter ("A" `isSuffixOf`) $ map fst networkMap
+stepsUntilAllDestinationsReached xs = foldr1 lcm $ map (\x -> (length . takeWhile (not . isSuffixOf "Z")) $ scanl (getNextNode (M.fromList $ getNetworkMap xs)) x (cycle $ getInstructions xs)) (allStartingNodes xs)
+
+getNextNode :: M.Map String (String, String) -> String -> Char -> String
+getNextNode nMap currentNode instruction = (\(x, y) -> if instruction == 'L' then x else y) (nMap M.! currentNode)
+
+getInstructions :: String -> String
+getInstructions xs = head $ lines xs
+
+getNetworkMap :: String -> [([Char], ([Char], [Char]))]
+getNetworkMap xs = map ((\x -> (head x, (x !! 1, last x))) . wordsBy (`elem` "=,") . filter (`notElem` " ()")) $ drop 2 $ lines xs
+
+allStartingNodes :: String -> [[Char]]
+allStartingNodes xs = filter ("A" `isSuffixOf`) . map fst $ getNetworkMap xs
