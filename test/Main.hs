@@ -7,6 +7,7 @@ import DayNine (predictExtrapolatedValues, predictExtrapolatedValues')
 import DayOne
 import DaySeven (totalWinnings, totalWinnings')
 import DaySix (productOfAllWaysToWin, waysToWinBigRace)
+import DayTen (enclosedTilesInLoop, totalStepsForLoop)
 import DayThree
 import DayTwo
 import Test.Hspec
@@ -60,3 +61,12 @@ main = hspec $ do
       predictExtrapolatedValues "0 3 6 9 12 15\n1 3 6 10 15 21\n10 13 16 21 30 45" `shouldBe` 114
     it "Gets the sum of the past prediction of sequences" $ do
       predictExtrapolatedValues' "0 3 6 9 12 15\n1 3 6 10 15 21\n10 13 16 21 30 45" `shouldBe` 2
+  describe "Day Ten" $ do
+    it "Gets the farthest step in the loop case 1" $ do
+      totalStepsForLoop "-L|F7\n7S-7|\nL|7||\n-L-J|\nL|-JF" `shouldBe` 4
+    it "Gets the farthest step in the loop case 2" $ do
+      totalStepsForLoop "7-F7-\n.FJ|7\nSJLL7\n|F--J\nLJ.LJ" `shouldBe` 8
+    it "Gets the enclosed tiles inside the loop case 1" $ do
+      enclosedTilesInLoop "..........\n.S------7.\n.|F----7|.\n.||OOOO||.\n.||OOOO||.\n.|L-7F-J|.\n.|II||II|.\n.L--JL--J.\n.........." `shouldBe` 4
+    it "Gets the enclosed tiles inside the loop case 2" $ do
+      enclosedTilesInLoop "FF7FSF7F7F7F7F7F---7\nL|LJ||||||||||||F--J\nFL-7LJLJ||||||LJL-77\nF--JF--7||LJLJIF7FJ-\nL---JF-JLJIIIIFJLJJ7\n|F|F-JF---7IIIL7L|7|\n|FFJF7L7F-JF7IIL---7\n7-L-JL7||F7|L7F-7F7|\nL.L7LFJ|||||FJL7||LJ\nL7JLJL-JLJLJL--JLJ.L" `shouldBe` 10

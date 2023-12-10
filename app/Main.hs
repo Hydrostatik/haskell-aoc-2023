@@ -8,6 +8,7 @@ import DayNine (predictExtrapolatedValues, predictExtrapolatedValues')
 import DayOne
 import DaySeven
 import DaySix
+import DayTen (enclosedTilesInLoop, totalStepsForLoop)
 import DayThree
 import DayTwo
 import System.CPUTime
@@ -51,3 +52,6 @@ main = do
   dayNineInput <- readFile "app/input/DayNine.txt"
   print $ predictExtrapolatedValues dayNineInput
   print $ predictExtrapolatedValues' dayNineInput
+  dayTenInput <- readFile "app/input/DayTen.txt"
+  print $ totalStepsForLoop dayTenInput
+  print $ enclosedTilesInLoop dayTenInput
