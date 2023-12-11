@@ -1,16 +1,23 @@
 module Main where
 
 import DayEight
+  ( stepsUntilAllDestinationsReached,
+    stepsUntilDestinationReached,
+  )
+import DayEleven (sumOfShortestPathsBetweenGalaxies, sumOfShortestPathsBetweenGalaxies')
 import DayFive (lowestLocationNumber, lowestLocationNumber')
 import DayFour (totalNumberOfScratchCards, totalWorthOfScratchCards)
 import DayNine (predictExtrapolatedValues, predictExtrapolatedValues')
 import DayOne
+  ( calculateSumOfAllCalibrationValues,
+    calculateSumOfAllCalibrationValues',
+  )
 import DaySeven (totalWinnings, totalWinnings')
 import DaySix (productOfAllWaysToWin, waysToWinBigRace)
 import DayTen (enclosedTilesInLoop, totalStepsForLoop)
-import DayThree
-import DayTwo
-import Test.Hspec
+import DayThree (findSumOfAllPartNumbers, sumOfAllGearRatios)
+import DayTwo (productOfMinimumCubesRequired, sumOfValidGameIDs)
+import Test.Hspec (describe, hspec, it, shouldBe)
 
 main :: IO ()
 main = hspec $ do
@@ -70,3 +77,8 @@ main = hspec $ do
       enclosedTilesInLoop "..........\n.S------7.\n.|F----7|.\n.||OOOO||.\n.||OOOO||.\n.|L-7F-J|.\n.|II||II|.\n.L--JL--J.\n.........." `shouldBe` 4
     it "Gets the enclosed tiles inside the loop case 2" $ do
       enclosedTilesInLoop "FF7FSF7F7F7F7F7F---7\nL|LJ||||||||||||F--J\nFL-7LJLJ||||||LJL-77\nF--JF--7||LJLJIF7FJ-\nL---JF-JLJIIIIFJLJJ7\n|F|F-JF---7IIIL7L|7|\n|FFJF7L7F-JF7IIL---7\n7-L-JL7||F7|L7F-7F7|\nL.L7LFJ|||||FJL7||LJ\nL7JLJL-JLJLJL--JLJ.L" `shouldBe` 10
+  describe "Day Eleven" $ do
+    it "Gets the sum shortest paths between galaxies after expansion by 2" $ do
+      sumOfShortestPathsBetweenGalaxies "...#......\n.......#..\n#.........\n..........\n......#...\n.#........\n.........#\n..........\n.......#..\n#...#....." `shouldBe` 374
+    it "Gets the sum shortest paths between galaxies after expansion by 1000000" $ do
+      sumOfShortestPathsBetweenGalaxies' "...#......\n.......#..\n#.........\n..........\n......#...\n.#........\n.........#\n..........\n.......#..\n#...#....." `shouldBe` 82000210

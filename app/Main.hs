@@ -2,6 +2,7 @@ module Main where
 
 import Control.Exception
 import DayEight (stepsUntilAllDestinationsReached, stepsUntilDestinationReached)
+import DayEleven (sumOfShortestPathsBetweenGalaxies, sumOfShortestPathsBetweenGalaxies')
 import DayFive
 import DayFour
 import DayNine (predictExtrapolatedValues, predictExtrapolatedValues')
@@ -55,3 +56,6 @@ main = do
   dayTenInput <- readFile "app/input/DayTen.txt"
   print $ totalStepsForLoop dayTenInput
   print $ enclosedTilesInLoop dayTenInput
+  dayElevenInput <- readFile "app/input/DayEleven.txt"
+  print $ sumOfShortestPathsBetweenGalaxies dayElevenInput
+  print $ sumOfShortestPathsBetweenGalaxies' dayElevenInput
