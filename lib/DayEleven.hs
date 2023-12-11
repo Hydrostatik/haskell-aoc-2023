@@ -59,5 +59,3 @@ mapExpansionOfGalaxies (r, c) ev = map (\(x, y) -> (expandPoint x c, expandPoint
       | x > y = (ev - 1) + expandPoint x ys
       | otherwise = x
     expandPoint x [] = x
-
-universe = "...#......\n.......#..\n#.........\n..........\n......#...\n.#........\n.........#\n..........\n.......#..\n#...#....."
